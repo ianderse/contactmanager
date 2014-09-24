@@ -1,5 +1,5 @@
 class PhoneNumber < ActiveRecord::Base
-	validates :number, :person_id, presence: true
+	validates :number, :contact_id, presence: true
 
-	belongs_to :person
+	belongs_to :contact, polymorphic: true
 end
