@@ -106,7 +106,7 @@ RSpec.describe PhoneNumbersController, :type => :controller do
 
   describe "PUT update" do
     describe "with valid params" do
-      let(:bob) { Person.create(first_name: 'Bob', last_name: 'Jones') }
+      let(:bob) { Person.create(first_name: 'Bill', last_name: 'Jones') }
       let(:valid_attributes) { {number: '555-5678', person_id: bob.id} }
 
       let(:new_attributes) {
@@ -127,7 +127,7 @@ RSpec.describe PhoneNumbersController, :type => :controller do
       end
 
       it "redirects to the phone_number" do
-        bob = Person.create(first_name: 'Bob', last_name: 'Jones')
+        bob = Person.create(first_name: 'Bill', last_name: 'Jones')
         valid_attributes = {number: '555-5678', person_id: bob.id}
         phone_number = PhoneNumber.create! valid_attributes
         put :update, {:id => phone_number.to_param, :phone_number => valid_attributes}, valid_session
@@ -152,16 +152,20 @@ RSpec.describe PhoneNumbersController, :type => :controller do
 
   describe "DELETE destroy" do
     it "destroys the requested phone_number" do
+      bob = Person.create(first_name: 'Bill', last_name: 'Jones')
+      valid_attributes = {number: '555-5678', person_id: bob.id}
       phone_number = PhoneNumber.create! valid_attributes
       expect {
         delete :destroy, {:id => phone_number.to_param}, valid_session
       }.to change(PhoneNumber, :count).by(-1)
     end
 
-    it "redirects to the phone_numbers list" do
+    it "redirects to the phone_numbers person" do
+      bob = Person.create(first_name: 'Bill', last_name: 'Jones')
+      valid_attributes = {number: '555-5678', person_id: bob.id}
       phone_number = PhoneNumber.create! valid_attributes
       delete :destroy, {:id => phone_number.to_param}, valid_session
-      expect(response).to redirect_to(phone_numbers_url)
+      expect(response).to redirect_to(phone_number.person)
     end
   end
 
