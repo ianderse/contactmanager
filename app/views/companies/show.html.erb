@@ -10,6 +10,13 @@
     <li><%= phone.number %> <%= link_to('edit', edit_phone_number_path(phone)) %></li>
   <% end %>
 </ul>
+
+<ul>
+  <% @company.email_addresses.each do |email| %>
+    <li><%= email.address %> <%= link_to('edit', edit_email_address_path(email)) %></li>
+  <% end %>
+</ul>
 <%= link_to 'Add phone number', new_phone_number_path(contact_id: @company.id, contact_type: 'Company') %> |
+<%= link_to 'Add email address', new_email_address_path(contact_id: @company.id, contact_type: 'Company') %> |
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>

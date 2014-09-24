@@ -57,4 +57,55 @@ describe 'the company view', type: :feature do
     end
   end
 
+  describe 'email addresses' do
+    before(:each) do
+      company.email_addresses.create(address: "example@example.com")
+      company.email_addresses.create(address: "first@last.com")
+      visit company_path(company)
+    end
+
+    it 'lists the email addresses' do
+      company.email_addresses.each do |email|
+        expect(page).to have_selector('li', text: email.address)
+      end
+    end
+
+    it 'has an add email address link' do
+      expect(page).to have_link('Add email address', href: new_email_address_path(contact_id: company.id, contact_type: 'Company'))
+    end
+
+    it 'adds a new email address' do
+      page.click_link('Add email address')
+      page.fill_in('Address', with: 'example@example.com')
+      page.click_button('Create Email address')
+      expect(current_path).to eq(company_path(company))
+      expect(page).to have_content('example@example.com')
+    end
+
+    it 'has links to edit email addresses' do
+      company.email_addresses.each do |email|
+        expect(page).to have_link('edit', href: edit_email_address_path(email))
+      end
+    end
+
+    it 'edits an email address' do
+      email = company.email_addresses.first
+      old_email = email.address
+
+      first(:link, 'edit').click
+      page.fill_in('Address', with: 'new@example.com')
+      page.click_button('Update Email address')
+      expect(current_path).to eq(company_path(company))
+      expect(page).to have_content('new@example.com')
+      expect(page).to_not have_content(old_email)
+    end
+
+    it 'deletes an email address' do
+      email = company.email_addresses.first
+      visit email_address_path(email)
+      first(:link, 'Destroy').click
+      expect(page).to_not have_content(email)
+    end
+  end
+
 end
