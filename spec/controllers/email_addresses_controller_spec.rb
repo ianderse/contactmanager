@@ -27,6 +27,8 @@ RSpec.describe EmailAddressesController, :type => :controller do
     ({"address" => "example@example.com", "person_id" => 1})
   }
 
+  let(:bob) { Person.create(first_name: 'Bill', last_name: 'Jones') }
+
   let(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
   }
@@ -69,6 +71,8 @@ RSpec.describe EmailAddressesController, :type => :controller do
 
   describe "POST create" do
     describe "with valid params" do
+      let(:alice) { Person.create(first_name: 'Alice', last_name: 'Smith') }
+      let(:valid_attributes) { {address: 'example@example.com', person_id: alice.id} }
       it "creates a new EmailAddress" do
         expect {
           post :create, {:email_address => valid_attributes}, valid_session
@@ -81,9 +85,9 @@ RSpec.describe EmailAddressesController, :type => :controller do
         expect(assigns(:email_address)).to be_persisted
       end
 
-      it "redirects to the created email_address" do
+      it "redirects to the created email_addresses person" do
         post :create, {:email_address => valid_attributes}, valid_session
-        expect(response).to redirect_to(EmailAddress.last)
+        expect(response).to redirect_to(EmailAddress.last.person)
       end
     end
 
