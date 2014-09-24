@@ -24,7 +24,7 @@ RSpec.describe EmailAddressesController, :type => :controller do
   # EmailAddress. As you add validations to EmailAddress, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    ({"address" => "example@example.com", "person_id" => 1})
   }
 
   let(:invalid_attributes) {
