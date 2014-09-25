@@ -14,9 +14,13 @@
       <tr>
         <td><%= person.first_name %></td>
         <td><%= person.last_name %></td>
-        <td><%= link_to 'Show', person %></td>
-        <td><%= link_to 'Edit', edit_person_path(person) %></td>
-        <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <ul class="actions">
+          <td>
+            <li><%= link_to 'Show', person %></li>
+            <li><%= link_to 'Edit', edit_person_path(person) %></li>
+            <li><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          </td>
+        </ul>
       </tr>
     <% end %>
   </tbody>
