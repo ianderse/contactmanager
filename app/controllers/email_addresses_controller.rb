@@ -6,10 +6,6 @@ class EmailAddressesController < ApplicationController
     @email_address = EmailAddress.new(contact_id: params[:contact_id], contact_type: params[:contact_type])
   end
 
-  # GET /email_addresses/1/edit
-  def edit
-  end
-
   # POST /email_addresses
   # POST /email_addresses.json
   def create

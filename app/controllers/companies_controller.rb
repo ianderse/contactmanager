@@ -7,19 +7,11 @@ class CompaniesController < ApplicationController
     @companies = Company.all
   end
 
-  # GET /companies/1
-  # GET /companies/1.json
-  def show
-  end
-
   # GET /companies/new
   def new
     @company = Company.new
   end
 
-  # GET /companies/1/edit
-  def edit
-  end
 
   # POST /companies
   # POST /companies.json

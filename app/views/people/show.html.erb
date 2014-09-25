@@ -9,16 +9,9 @@
   <strong>Last name:</strong>
   <%= @person.last_name %>
 </p>
-<ul>
-  <% @person.phone_numbers.each do |phone| %>
-    <li><%= phone.number %> <%= link_to('edit', edit_phone_number_path(phone)) %> | <%= link_to 'Destroy', phone, method: :delete, data: { confirm: 'Are you sure?' } %></li></li>
-  <% end %>
-</ul>
-<ul>
-  <% @person.email_addresses.each do |email| %>
-    <li><%= email.address %> <%= link_to('edit', edit_email_address_path(email)) %> | <%= link_to 'Destroy', email, method: :delete, data: { confirm: 'Are you sure?' } %></li></li>
-  <% end %>
-</ul>
+<%= render 'phone_numbers/phone_numbers', :phone_numbers  => @person.phone_numbers %>
+<%= render 'email_addresses/email_addresses', :email_addresses => @person.email_addresses %>
+
 <%= link_to 'Add phone number', new_phone_number_path(contact_id: @person.id, contact_type: 'Person') %> |
 <%= link_to 'Add email address', new_email_address_path(contact_id: @person.id, contact_type: 'Person') %> |
 <%= link_to 'Edit', edit_person_path(@person) %> |
