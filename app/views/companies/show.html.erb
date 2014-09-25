@@ -13,7 +13,7 @@
 
 <ul>
   <% @company.email_addresses.each do |email| %>
-    <li><%= email.address %> <%= link_to('edit', edit_email_address_path(email)) %></li>
+    <li><%= email.address %> <%= link_to('edit', edit_email_address_path(email)) %> | <%= link_to 'Destroy', email, method: :delete, data: { confirm: 'Are you sure?' } %></li>
   <% end %>
 </ul>
 <%= link_to 'Add phone number', new_phone_number_path(contact_id: @company.id, contact_type: 'Company') %> |

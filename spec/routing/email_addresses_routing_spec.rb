@@ -3,16 +3,8 @@ require "rails_helper"
 RSpec.describe EmailAddressesController, :type => :routing do
   describe "routing" do
 
-    it "routes to #index" do
-      expect(:get => "/email_addresses").to route_to("email_addresses#index")
-    end
-
     it "routes to #new" do
       expect(:get => "/email_addresses/new").to route_to("email_addresses#new")
-    end
-
-    it "routes to #show" do
-      expect(:get => "/email_addresses/1").to route_to("email_addresses#show", :id => "1")
     end
 
     it "routes to #edit" do

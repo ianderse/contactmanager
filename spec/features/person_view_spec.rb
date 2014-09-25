@@ -102,7 +102,7 @@ describe 'the person view', type: :feature do
 
     it 'deletes an email address' do
       email = person.email_addresses.first
-      visit email_address_path(email)
+      visit person_path(person)
       first(:link, 'Destroy').click
       expect(page).to_not have_content(email)
     end

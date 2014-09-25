@@ -102,7 +102,7 @@ describe 'the company view', type: :feature do
 
     it 'deletes an email address' do
       email = company.email_addresses.first
-      visit email_address_path(email)
+      visit company_path(company)
       first(:link, 'Destroy').click
       expect(page).to_not have_content(email)
     end
