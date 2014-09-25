@@ -7,11 +7,6 @@ class PhoneNumbersController < ApplicationController
     @phone_numbers = PhoneNumber.all
   end
 
-  # GET /phone_numbers/1
-  # GET /phone_numbers/1.json
-  def show
-  end
-
   # GET /phone_numbers/new
   def new
     @phone_number = PhoneNumber.new(contact_id: params[:contact_id], contact_type: params[:contact_type])

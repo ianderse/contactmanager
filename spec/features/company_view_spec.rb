@@ -51,7 +51,7 @@ describe 'the company view', type: :feature do
 
     it 'deletes a phone number' do
       phone = company.phone_numbers.first
-      visit phone_number_path(phone)
+      visit company_path(company)
       first(:link, 'Destroy').click
       expect(page).to_not have_content(phone)
     end
